@@ -1,0 +1,32 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+dependencies {
+    implementation 'com.android.tools.build:gradle:4.1.0'
+    implementation 'org.javassist:javassist:3.27.0-GA'
+}
+
+// 将该插件上传到本地Maven库
+group='com.hang.inject'
+version='1.1.4'
+
+// 通过gradlew :customPlugin:uploadArchives命令上传
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //本地的Maven地址设置为../repos
+            repository(url: uri('/Users/chenhang/Documents/soft'))
+        }
+    }
+}
